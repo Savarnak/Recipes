@@ -1,0 +1,30 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: recipe-mysql
+    environment:
+      MYSQL_DATABASE: recipe_db
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: recipe_user
+      MYSQL_PASSWORD: recipe_password
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -prootpassword"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    container_name: recipe-api
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DB_USERNAME: recipe_user
+      DB_PASSWORD: recipe_password
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/recipe_db?useSSL=false&serverTimezone=UTC
+      SPRING_PROFILES_ACTIVE: dev
+    ports:
+      - "8080:8080"
