@@ -126,33 +126,3 @@ GET /recipes?cuisine=Indian&page=0&size=10&sortBy=rating&direction=desc
 }
 ```
 
-## Screenshots
-
-Add screenshots here after running the app:
-
-- Swagger UI
-- Successful API call
-- Validation error response
-- Actuator health endpoint
-
-## Testing
-
-```bash
-./mvnw test
-```
-
-Coverage includes:
-
-- service-layer behavior
-- controller endpoint behavior with MockMvc
-- repository filtering behavior
-- application context startup
-
-## Resume-ready highlights
-
-- Designed RESTful CRUD APIs with pagination, filtering, and sorting
-- Implemented layered Spring Boot architecture with DTO separation
-- Added validation, structured error handling, and production-style logging
-- Used JPA/Hibernate for persistence and optimized startup ingestion with batching
-- Added Swagger/OpenAPI documentation, Actuator health checks, and Docker support
-- Wrote unit, web-layer, repository, and context tests
